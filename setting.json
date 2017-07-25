@@ -1,0 +1,49 @@
+{
+    "LOGIN": {
+        "LOGIN_URL": "https://c88fef96.forestapp.cc/api/v1/sessions",
+        "LOGIN_HEADER": {
+            "Content-Type": "application/json; charset=utf-8",
+            "Cookie": "request_method=PUT",
+            "Connection": "keep-alive",
+            "If-None-Match": "W/'b114c508234e3bdb4da90c93e8dfaa61'",
+            "Accept": "*/*",
+            "User-Agent": "Forest/204 (iPhone; iOS 10.3.2; Scale/2.00)",
+            "Accept-Language": "zh-Hans-CN;q=1, en-CN;q=0.9, ja-JP;q=0.8",
+            "Accept-Encoding": "gzip, deflate"
+        },
+        "LOGIN_FORM": {
+            "session": {
+                "email": "",
+                "password": ""
+            }
+        }
+    },
+    "FOLLOWED": {
+        "FOLLOWED_RANK_URL": "https://c88fef96.forestapp.cc/api/v1/followings?brief=true&from_date=2017-07-19%2016%3A00%3A00%20%2B0000&to_date=2017-07-20%2016%3A00%3A00%20%2B0000",
+        "FOLLOWED_RANK_HEADER": {
+            "Content-Type": "application/json",
+            "Accept": "*/*",
+            "Cookie": "",
+            "User-Agent": "Forest/204 (iPhone; iOS 10.3.2; Scale/2.00)",
+            "Accept-Language": "zh-Hans-CN;q=1, en-CN;q=0.9, ja-JP;q=0.8",
+            "Accept-Encoding": "gzip, deflate",
+            "Connection": "keep-alive"
+        }
+    },
+    "ADD_FOLLOW": {
+        "ADD_FOLLOW_URL": "https://c88fef96.forestapp.cc/api/v1/followings",
+        "ADD_FOLLOW_HEADER": {
+            "Host": "c88fef96.forestapp.cc",
+            "Accept": "application/json",
+            "Content-Type": "application/json; charset=utf-8",
+            "Connection": "keep-alive",
+            "Cookie": "",
+            "User-Agent": "Forest/204 (iPhone; iOS 10.3.2; Scale/2.00)",
+            "Accept-Language": "zh-Hans-CN;q=1, en-CN;q=0.9, ja-JP;q=0.8",
+            "Accept-Encoding": "gzip, deflate"
+        },
+        "TARGET_EMAIL": {
+            "target_email": ""
+        }
+    }
+}
