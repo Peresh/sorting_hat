@@ -1,6 +1,6 @@
 import json
 import requests
-
+import datetime
 
 class Forest:
     def __init__(self):
@@ -17,6 +17,11 @@ class Forest:
             url=login_url, data=login_form, headers=login_header, verify=False)
 
         self.LOGIN_TOKEN = "remember_token=" + login_response.cookies["remember_token"]
+
+        if login_response.status_code == requests.codes.ok:
+            print "Forest login succeed."
+        else:
+            print "Forest login failed."
         return login_response
 
     def get_followed_rank(self):
@@ -25,9 +30,21 @@ class Forest:
         followed_rank_header = followed_setting["FOLLOWED_RANK_HEADER"]
         followed_rank_header["Cookie"] = self.LOGIN_TOKEN
 
+        today = datetime.date.today()
+        yesterday = today - datetime.timedelta(days=1)
+        
+        param_tail = "%2016%3A00%3A00%20%2B0000"
+        params = {
+            'brief': 'true',
+            'from_date': yesterday,
+            'to_date': today
+        }
+
         followed_rank = requests.get(
-            url=followed_rank_url, headers=followed_rank_header, verify=False)
+            url=followed_rank_url,params=params, headers=followed_rank_header, verify=False)
+        followed_rank = json.loads(followed_rank.text, encoding="utf-8")
         return followed_rank
+
 
     def add_follow(self, target_email):
         target_email = {"target_email": target_email}
@@ -35,20 +52,22 @@ class Forest:
         add_follow_url = add_follow_setting["ADD_FOLLOW_URL"]
         add_follow_header = add_follow_setting["ADD_FOLLOW_HEADER"]
         add_follow_header["Cookie"] = self.LOGIN_TOKEN
+        
+        print target_email
+        print add_follow_header
+
         add_follow = requests.post(
             url=add_follow_url,
             headers=add_follow_header,
-            data=target_email,
+            data=json.dumps(target_email),
             verify=False)
-    
-# DEBUG SNIPPET
-# if __name__ == '__main__':
-#     forest = Forest()
-#     login_response = forest.login()
-#     followed_rank = json.loads(forest.get_followed_rank().text,encoding="utf-8")
-#     followed_rank = [{
-#         "user_id": r["user_id"],
-#         "name": r["name"],
-#         "total_minute": r["total_minute"]
-#     } for r in followed_rank]
-#     print followed_rank
+        
+        if add_follow.status_code == requests.codes.ok:
+            return "Add Forest follow succeed."
+        else:
+            return "Add Forest follow failed."
+
+if __name__ == '__main__':
+    forest = Forest()
+    print forest.login()
+    # print forest.add_follow("18302106510@163.com")

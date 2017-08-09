@@ -19,7 +19,7 @@
         }
     },
     "FOLLOWED": {
-        "FOLLOWED_RANK_URL": "https://c88fef96.forestapp.cc/api/v1/followings?brief=true&from_date=2017-07-19%2016%3A00%3A00%20%2B0000&to_date=2017-07-20%2016%3A00%3A00%20%2B0000",
+        "FOLLOWED_RANK_URL": "https://c88fef96.forestapp.cc/api/v1/followings",
         "FOLLOWED_RANK_HEADER": {
             "Content-Type": "application/json",
             "Accept": "*/*",
